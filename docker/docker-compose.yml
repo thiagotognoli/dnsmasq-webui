@@ -31,6 +31,18 @@ services:
       dnsm:
         ipv4_address: 172.53.2.12
       externalm:
+  php:
+    build: dnsmasq/.
+    ports:
+      - 553:53/udp
+      - 553:53/tcp
+    volumes:
+      - ./www/storage/app/dnsmasq:/var/dnsmasq-webui/etc
+    networks:
+      dnsm:
+        ipv4_address: 172.53.2.11
+        #                ipv6_address: "2001:3984:3989::10"
+      externalm:
 
 networks:
   dnsm:
