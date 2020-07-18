@@ -19,8 +19,8 @@ services:
   #Nginx Service
   webserver:
     image: nginx:alpine
-    restart: always    
-    restart: unless-stopped
+    restart: always
+    #restart: unless-stopped
     tty: true
     ports:
       - "5380:80"
@@ -34,6 +34,7 @@ services:
       externalm:
   dns:
     build: dnsmasq/.
+    restart: always
     container_name: webserver
     depends_on:
       - php
