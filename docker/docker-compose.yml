@@ -2,6 +2,7 @@ version: '3.5'
 
 services:
   php:
+    restart: always
     build: php/.
     ports:
 #        - 553:53/udp
@@ -18,12 +19,12 @@ services:
   #Nginx Service
   webserver:
     image: nginx:alpine
-    container_name: webserver
+    restart: always    
     restart: unless-stopped
     tty: true
     ports:
-      - "801:80"
-      - "4431:443"
+      - "5380:80"
+      - "53443:443"
     volumes:
       - ./www:/var/www/html
       - ./nginx/:/etc/nginx/conf.d/
@@ -33,11 +34,12 @@ services:
       externalm:
   dns:
     build: dnsmasq/.
+    container_name: webserver
     depends_on:
       - php
     ports:
-      - 553:53/udp
-      - 553:53/tcp
+      - 53:53/udp
+      - 53:53/tcp
     cap_add:
       - NET_ADMIN
     volumes:
