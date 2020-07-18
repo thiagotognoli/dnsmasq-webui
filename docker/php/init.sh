@@ -1,11 +1,11 @@
 #!/bin/sh
-if [ ! -e ../static/.inited ]
+if [ ! -e /var/www/static/.inited ]
 then 
-    cp -R public ../static/.
-    mv storage ../static/.
-    rm -rf storage
-    ln -sf ../static/storage storage
-    touch ../static/.inited
+    cp -R public /var/www/static/.
+    mv /var/www/html/storage /var/www/static/.
+    rm -rf /var/www/html/storage
+    ln -sf /var/www/static/storage /var/www/html/storage
+    touch /var/www/static/.inited
 fi
 
 php-fpm
