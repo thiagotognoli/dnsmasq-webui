@@ -31,7 +31,7 @@ services:
       dnsm:
         ipv4_address: 172.53.2.12
       externalm:
-  php:
+  dns:
     build: dnsmasq/.
     ports:
       - 553:53/udp
