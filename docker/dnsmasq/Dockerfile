@@ -7,11 +7,12 @@ RUN set -ex \
     && apk add --no-cache \
         dnsmasq \
         entr \
-    && touch /var/dnsmasq-webui/etc/resolv.conf  \
-    && touch /var/dnsmasq-webui/etc/resolv  \
-    && touch /var/dnsmasq-webui/etc/addn-hosts.conf  \
-    && touch /var/dnsmasq-webui/etc/hosts  \
-    && touch /var/dnsmasq-webui/etc/records.conf \
+#    && mkdir -p /var/dnsmasq-webui/etc \
+#    && touch /var/dnsmasq-webui/etc/resolv.conf  \
+#    && touch /var/dnsmasq-webui/etc/resolv  \
+#    && touch /var/dnsmasq-webui/etc/addn-hosts.conf  \
+#    && touch /var/dnsmasq-webui/etc/hosts  \
+#    && touch /var/dnsmasq-webui/etc/records.conf \
     && ln -sf /var/dnsmasq-webui/etc/resolv.conf /etc/dnsmasq.d/resolv.conf \
     && ln -sf /var/dnsmasq-webui/etc/resolv /etc/dnsmasq.d/resolv \
     && ln -sf /var/dnsmasq-webui/etc/addn-hosts.conf /etc/dnsmasq.d/addn-hosts.conf \
