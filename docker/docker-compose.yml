@@ -33,6 +33,8 @@ services:
       externalm:
   dns:
     build: dnsmasq/.
+    depends_on:
+      - php
     ports:
       - 553:53/udp
       - 553:53/tcp
