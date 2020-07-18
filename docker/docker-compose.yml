@@ -39,7 +39,7 @@ services:
       - 553:53/udp
       - 553:53/tcp
     volumes:
-      - ./www/storage/app/dnsmasq:/var/dnsmasq-webui/etc
+      - ./www:/var/www/html
     networks:
       dnsm:
         ipv4_address: 172.53.2.11

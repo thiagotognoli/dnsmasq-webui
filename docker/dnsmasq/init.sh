@@ -1,5 +1,5 @@
 #!/bin/sh
 
 while sleep 1; do
-    ls /var/dnsmasq-webui/etc/. | entr -r dnsmasq
+    ls /etc/dnsmasq.d/. | entr -r dnsmasq
 done
