@@ -20,7 +20,8 @@ RUN set -ex \
     && sed -i '/^APP_ENV/ s/local/production/g' .env \
     && touch database/database.sqlite \
     && php artisan migrate --seed --force \
-    && chown www-data:www-data * -R
+    && chown www-data:www-data * -R \
+    && mv storage _storage
 #    && ln -sf /var/www/html/storage/app/dnsmasq/resolv.conf /etc/dnsmasq.d/resolv.conf \
 #    && ln -sf /var/www/html/storage/app/dnsmasq/resolv /etc/dnsmasq.d/resolv \
 #    && ln -sf /var/www/html/storage/app/dnsmasq/addn-hosts.conf /etc/dnsmasq.d/addn-hosts.conf \

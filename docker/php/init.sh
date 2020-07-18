@@ -3,9 +3,8 @@ if [ ! -e /var/www/static/.inited ]
 then 
     cp -R public /var/www/static/.
     mv /var/www/html/storage /var/www/static/.
-    rm -rf /var/www/html/storage
-    ln -sf /var/www/static/storage /var/www/html/storage
+    cp -R _atorage /var/www/static/storage
     touch /var/www/static/.inited
 fi
-
+ln -sf /var/www/static/storage /var/www/html/storage
 php-fpm
