@@ -7,6 +7,28 @@ touch /var/www/html/storage/app/dnsmasq/resolv
 touch /var/www/html/storage/app/dnsmasq/resolv.conf
 
 
-while sleep 1; do
-    ls /var/www/html/storage/app/dnsmasq/. | entr -r dnsmasq
+dnsmasq
+PID=$!
+
+target=/var/www/html/storage/app/dnsmasq
+
+interval=1
+
+while true; do
+    changes=$(find ${target} -mmin -${interval})
+
+    if [ ${#changes} -ne 0 ]; then
+        date
+        kill $PID
+        dnsmasq
+        PID=$!
+    fi
+
+    sleep ${interval}m
 done
+
+
+
+#while sleep 1; do
+#    ls /var/www/html/storage/app/dnsmasq/. | entr -r dnsmasq
+#done
