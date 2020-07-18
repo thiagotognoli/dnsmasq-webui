@@ -1,0 +1,51 @@
+version: '3.5'
+
+services:
+  php:
+    build: php/.
+    ports:
+#        - 553:53/udp
+#        - 553:53/tcp
+        - 9000:9000
+    volumes:
+       - ./www:/var/www/static
+    networks:
+         # you may set custom IP addresses
+       dnsm:
+         ipv4_address: 172.53.2.10 
+#                ipv6_address: "2001:3984:3989::10"
+#            externalm:
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "801:80"
+      - "4431:443"
+    volumes:
+      - ./www:/var/www/html
+      - ./nginx/:/etc/nginx/conf.d/
+    networks:
+      dnsm:
+        ipv4_address: 172.53.2.12
+      externalm:
+
+networks:
+  dnsm:
+    name: dnsm
+    driver: bridge
+#    driver_opts:
+#      com.docker.network.enable_ipv6: "true"
+    internal: true
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.53.2.0/24"
+#          gateway: "172.0.0.1"
+#        - subnet: "2001:3953:3989::/64"
+#          gateway: "2001:3984:3989::1"
+  externalm:
+    name: externalm
+    driver: bridge
