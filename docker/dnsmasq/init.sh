@@ -7,7 +7,7 @@ touch /var/www/html/storage/app/dnsmasq/resolv
 touch /var/www/html/storage/app/dnsmasq/resolv.conf
 
 
-dnsmasq
+dnsmasq -d &
 PID=$!
 
 target=/var/www/html/storage/app/dnsmasq
@@ -20,7 +20,7 @@ while true; do
     if [ ${#changes} -ne 0 ]; then
         date
         kill $PID
-        dnsmasq
+        dnsmasq -d &
         PID=$!
     fi
 

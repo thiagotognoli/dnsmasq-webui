@@ -38,6 +38,8 @@ services:
     ports:
       - 553:53/udp
       - 553:53/tcp
+    cap_add:
+      - NET_ADMIN
     volumes:
       - ./www:/var/www/html
     networks:
